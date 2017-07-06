@@ -17,6 +17,7 @@ dependencies:
     - echo y | android update sdk --no-ui --filter "extra-android-m2repository"
     - echo y | android update sdk --no-ui --filter "extra-android-support"
     - echo y | android update sdk --no-ui --filter "extra-google-m2repositor"
+    - chmod +x gradlew
     - ./gradlew dependencies || true
 
 test:
