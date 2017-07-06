@@ -9,6 +9,10 @@ android:
     - android-26
     - extra-android-m2repository
     - extra-android-support
+  licenses:
+    - 'android-sdk-preview-license-52d11cd2'
+    - 'android-sdk-license-.+'
+    - 'google-gdk-license-.+'
 
 before_install:
  - chmod +x gradlew
@@ -22,7 +26,7 @@ before_deploy:
 deploy:
   provider: releases
   api_key:
-    secure: 58bb56312531f180372f9c4c3f0445277de23d26
+    secure: $REPO
   file: app/build/outputs/apk/baseAdapter.apk
   skip_cleanup: true
   on:
