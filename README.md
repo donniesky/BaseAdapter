@@ -1,5 +1,4 @@
-[![Stories in Ready](https://badge.waffle.io/donniesky/BaseAdapter.png?label=ready&title=Ready)](https://waffle.io/donniesky/BaseAdapter?utm_source=badge)
-# BaseAdapter [![](https://jitpack.io/v/donniesky/BaseAdapter.svg)](https://jitpack.io/#donniesky/BaseAdapter)  [![Build Status](https://travis-ci.org/donniesky/BaseAdapter.svg?branch=master)](https://travis-ci.org/donniesky/BaseAdapter)
+# BaseAdapter [![](https://jitpack.io/v/donniesky/BaseAdapter.svg)](https://jitpack.io/#donniesky/BaseAdapter)  [![Build Status](https://travis-ci.org/donniesky/BaseAdapter.svg?branch=master)](https://travis-ci.org/donniesky/BaseAdapter)  [![CircleCI](https://circleci.com/gh/donniesky/BaseAdapter/tree/master.svg?style=svg)](https://circleci.com/gh/donniesky/BaseAdapter/tree/master)  [![Stories in Ready](https://badge.waffle.io/donniesky/BaseAdapter.png?label=ready&title=Ready)](https://waffle.io/donniesky/BaseAdapter?utm_source=badge)
 
 ## Setup and usage
 ### installation
