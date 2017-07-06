@@ -10,5 +10,20 @@ android:
     - extra-android-m2repository
     - extra-android-support
 
+before_install:
+ - chmod +x gradlew
+
 script:
   - ./gradlew assembleRelease
+
+before_deploy:
+  - mv app/build/outputs/apk/app-release.apk app/build/outputs/apk/baseAdapter.apk
+
+deploy:
+  provider: releases
+  api_key:
+    secure: 58bb56312531f180372f9c4c3f0445277de23d26
+  file: app/build/outputs/apk/baseAdapter.apk
+  skip_cleanup: true
+  on:
+    tags: true
