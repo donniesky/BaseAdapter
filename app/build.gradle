@@ -14,6 +14,10 @@ android {
         preDexLibraries = preDexEnabled && !isCi
     }
 
+    lintOptions {
+        abortOnError false
+    }
+
     defaultConfig {
         applicationId "me.donnie.app"
         minSdkVersion 14
