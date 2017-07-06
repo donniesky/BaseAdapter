@@ -1,6 +1,3 @@
-codecov:
-  token: fa95298d-6cdc-4f04-a9fe-c87e5b0448e2
-
 machine:
   java:
       version: oraclejdk8
