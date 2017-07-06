@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
-apply plugin: 'jacoco-android'
+apply plugin: 'com.novoda.bintray-release'
 
 group = 'com.github.donniesky'
 
@@ -33,4 +33,13 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:recyclerview-v7:26.0.0-alpha1'
     compile 'com.android.support:support-annotations:26.0.0-alpha1'
+}
+
+publish {
+    userOrg = 'donnieSky'
+    groupId = 'me.donnieSky.adapter'
+    artifactId = 'baseAdapter'
+    version = '0.0.1'
+    description = 'Powerful recyclerview adapter '
+    website = "https://github.com/donniesky/${rootProject.name}"
 }
