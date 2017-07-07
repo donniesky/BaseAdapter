@@ -28,12 +28,73 @@ dependencies {
 or just import `library` module to your project.
 
 ## Features
-Proxy Pattern.
 
-* No need change anything with your target adapter;
-* Not destory target adapter position;
-* Support dynamic add & remove;
-* No dependencies code build order
+### BaseAdapter
+> **BaseAdapter** allows you to shorten the code of most usual ```BaseAdapter```, taking care of implementing everything for you based on your data list. You only need to focus on the mapping between your view and your model.
+> this library is to build your adapters by composing reusable components, 
+> * Favor composition over inheritance .
+
+### Usage
+
+For single item adapter:
+
+```JAVA
+public class TestAdapter extends BaseAdapter<String, BaseViewHolder> {
+
+    public TestAdapter() {
+        super(R.layout.list_item);
+    }
+
+    @Override
+    protected void convert(BaseViewHolder holder, String s, int position) {
+        holder.setText(R.id.txt, s);
+    }
+}
+```
+
+For MultiItem adapter:
+
+```JAVA
+public class Test2Adapter extends MultiItemAdapter<String, BaseViewHolder> {
+    public Test2Adapter() {
+        super(null);
+
+        addItemViewDelegate(new ItemDefaultDelegate());
+        addItemViewDelegate(new Item1Delegate());
+        addItemViewDelegate(new Item2Delegate());
+    }
+}
+```
+define an `ItemViewDelegate` for each view type. This delegate is responsible for creating ViewHolder and binding ViewHolder for a certain viewtype. An `ItemViewDelegate` get added to an `ItemViewDelegateManager`. This manager is the man in the middle between RecyclerView.Adapter and each `ItemViewDelegate`.
+
+For example:
+
+```JAVA
+public class Item1Delegate implements ItemViewDelegate<String> {
+    @Override
+    public int getItemViewLayoutId() {
+        return R.layout.view_item_1;
+    }
+
+    @Override
+    public boolean isForViewType(String item, int position) {
+        return item.equals("2");
+    }
+
+    @Override
+    public void convert(BaseViewHolder holder, String s, int position) {
+        holder.setText(R.id.txt1, s);
+    }
+}
+```
+
+### Walle
+> Proxy Pattern.
+> 
+> * No need change anything with your target adapter;
+> * Not destory target adapter position;
+> * Support dynamic add & remove;
+> * No dependencies code build order
 
 ### Usage
 
