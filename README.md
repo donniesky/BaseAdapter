@@ -21,7 +21,7 @@ Step 2. Add the dependency
 Assuming you have installed jitpack provider:
 ```GRADLE
 dependencies {
-        compile 'com.github.donniesky:BaseAdapter:v0.0.1'
+        compile 'com.github.donniesky:BaseAdapter:v0.0.2'
 }
 ```
 
