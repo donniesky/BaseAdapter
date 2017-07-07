@@ -39,14 +39,21 @@ Proxy Pattern.
 ### Usage
 
 ```JAVA
-Walle wrapper = Walle.newBuilder()
-                .wrapperAdapter(adapter)
-                .autoLoadMore(false)
-                .headerViewRes(R.layout.view_header)
-                .emptyViewRes(R.layout.view_empty)
-                .footerViewRes(R.layout.view_footer)
-                .loadMoreViewRes(R.layout.view_loadmore)
-                .build();
+
+Walle walle = Walle.newBuilder()
+                .enableHeader(true)
+                .headerRes(R.layout.view_header)
+                .enableFooter(true)
+                .footerRes(R.layout.view_footer)
+                .enableLoadMore(true)
+                .loadmoreRes(R.layout.view_load_more)
+                .addLoadMoreListener(this)
+                .wrapperAdapter(adapter).build();
+		
+rv.setAdapter(walle.getWrapperAdapter());
+
+adapter.setData(getdatas());
+
 ```
 
 ### Thanks
