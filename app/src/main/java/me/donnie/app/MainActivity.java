@@ -12,8 +12,9 @@ import java.util.List;
 
 import me.donnie.adapter.BaseAdapter;
 import me.donnie.adapter.BaseViewHolder;
+import me.donnie.adapter.wrapper.Walle;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements Walle.OnLoadMoreListener {
 
     private RecyclerView rv;
 
@@ -26,13 +27,24 @@ public class MainActivity extends AppCompatActivity {
         rv = (RecyclerView) findViewById(R.id.rv);
         rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         adapter = new Test2Adapter();
-        rv.setAdapter(adapter);
+
+        Walle walle = Walle.newBuilder()
+                .enableHeader(true)
+                .headerRes(R.layout.view_header)
+                .enableFooter(true)
+                .footerRes(R.layout.view_footer)
+                .enableLoadMore(true)
+                .loadmoreRes(R.layout.view_load_more)
+                .addLoadMoreListener(this)
+                .wrapperAdapter(adapter).build();
+        rv.setAdapter(walle.getWrapperAdapter());
+
         adapter.setData(getdatas());
 
         adapter.setOnItemClickListener(new BaseAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, BaseViewHolder holder, int position) {
-                Toast.makeText(MainActivity.this, "点击"+ position, Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "点击"+(position - 1), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -51,5 +63,13 @@ public class MainActivity extends AppCompatActivity {
             data.add(s);
         }
         return data;
+    }
+
+    @Override
+    public void onLoadMore(int currentPage, int totalItemCount) {
+        //adapter.addData(getdatas());
+        Toast.makeText(MainActivity.this,
+                "currentPage = "+currentPage + " " + "totalItemCount = "+totalItemCount,
+                Toast.LENGTH_SHORT).show();
     }
 }

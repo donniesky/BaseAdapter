@@ -36,8 +36,8 @@ dependencies {
 }
 
 publish {
-    userOrg = 'donnieSky'
-    groupId = 'me.donnieSky.adapter'
+    userOrg = 'donniesky'
+    groupId = 'me.donniesky'
     artifactId = 'baseAdapter'
     version = '0.0.1'
     description = 'Powerful recyclerview adapter '

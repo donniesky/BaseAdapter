@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Library</string>
+    <string name="no_more_msg">没有了</string>
+    <string name="error_msg">出错了</string>
+    <string name="click_to_load">点击加载更多</string>
+    <string name="load_complete">加载完成</string>
+    <string name="loading">正在加载...</string>
 </resources>
