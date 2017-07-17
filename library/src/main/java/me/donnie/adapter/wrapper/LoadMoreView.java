@@ -30,8 +30,8 @@ public class LoadMoreView extends FrameLayout implements ILoadMoreView {
 
         LayoutInflater.from(context).inflate(loadMoreRes, this, true);
         setLayoutParams(new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        mProgressBar = findViewById(R.id.progressBar);
-        msg = findViewById(R.id.msg);
+        mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
+        msg = (TextView) findViewById(R.id.msg);
         root = findViewById(R.id.root);
     }
 
