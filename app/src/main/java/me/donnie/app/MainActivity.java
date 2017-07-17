@@ -29,10 +29,10 @@ public class MainActivity extends AppCompatActivity implements Walle.OnLoadMoreL
         adapter = new Test2Adapter();
 
         Walle walle = Walle.newBuilder()
-                .enableHeader(true)
+                /*.enableHeader(true)
                 .headerRes(R.layout.view_header)
                 .enableFooter(true)
-                .footerRes(R.layout.view_footer)
+                .footerRes(R.layout.view_footer)*/
                 .enableLoadMore(true)
                 .loadmoreRes(R.layout.view_load_more)
                 .addLoadMoreListener(this)

@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.List;
@@ -38,6 +39,8 @@ public class Walle {
 
     private OnRecyclerViewScrollListener mOnRecyclerViewScrollListener;
 
+    private OnHeaderClickListener mOnHeaderClickListener;
+
     private Walle(Builder builder) {
         setHeaderRes(builder.headerRes);
         setFooterRes(builder.footerRes);
@@ -48,6 +51,7 @@ public class Walle {
         setWrapperAdapter(builder.baseAdapter);
         setVisibleThreshold(builder.visibleThreshold);
         setOnLoadMoreListener(builder.onLoadMoreListener);
+        setOnHeaderClickListener(builder.onHeaderClickListener);
     }
 
     public static Builder newBuilder() {
@@ -95,6 +99,10 @@ public class Walle {
         if (this.mOnRecyclerViewScrollListener != null) {
             this.mOnRecyclerViewScrollListener.setOnLoadMoreListener(onLoadMoreListener);
         }
+    }
+
+    public void setOnHeaderClickListener(OnHeaderClickListener onHeaderClickListener) {
+        mOnHeaderClickListener = onHeaderClickListener;
     }
 
     public WrapperAdapter getWrapperAdapter() {
@@ -279,6 +287,16 @@ public class Walle {
 
         @Override
         public void onBindViewHolder(BaseViewHolder holder, int position) {
+            if (isHeader(position)) {
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (mOnHeaderClickListener != null) {
+                            mOnHeaderClickListener.onClick(view);
+                        }
+                    }
+                });
+            }
             if (!isHeader(position) && !isFooter(position) && !isLoadMore(position)) {
                 baseAdapter.onBindViewHolder(holder, (enableHeader && headerRes > 0) ? position - 1 : position);
             }
@@ -321,6 +339,7 @@ public class Walle {
         private boolean enableLoadMore;
         private RecyclerView.Adapter<BaseViewHolder> baseAdapter;
         private OnLoadMoreListener onLoadMoreListener;
+        private OnHeaderClickListener onHeaderClickListener;
 
         private Builder() {
         }
@@ -370,6 +389,11 @@ public class Walle {
             return this;
         }
 
+        public Builder addHeaderClickListener(OnHeaderClickListener onHeaderClickListener) {
+            this.onHeaderClickListener = onHeaderClickListener;
+            return this;
+        }
+
         public Walle build() {
             return new Walle(this);
         }
@@ -379,5 +403,8 @@ public class Walle {
         void onLoadMore(int currentPage, int totalItemCount);
     }
 
+    public interface OnHeaderClickListener {
+        void onClick(View view);
+    }
 
 }
