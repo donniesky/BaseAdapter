@@ -12,6 +12,10 @@ android {
         abortOnError false
     }
 
+    dataBinding {
+        enabled = true
+    }
+
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 25

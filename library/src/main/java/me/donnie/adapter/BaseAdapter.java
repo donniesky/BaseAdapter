@@ -101,7 +101,7 @@ public abstract class BaseAdapter<T, VH extends BaseViewHolder> extends Recycler
         return mData.size();
     }
 
-    protected abstract void convert(BaseViewHolder holder, T t, int position);
+    protected abstract void convert(VH holder, T t, int position);
 
     protected void setListener(final ViewGroup parent, final BaseViewHolder viewHolder, int viewType) {
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {

@@ -44,7 +44,7 @@ public abstract class MultiItemAdapter<T, VH extends BaseViewHolder> extends Bas
     }
 
     @Override
-    protected void convert(BaseViewHolder holder, T t, int position) {
+    protected void convert(VH holder, T t, int position) {
         mItemViewDelegateManager.convert(holder, t, position);
     }
 
