@@ -1,10 +1,11 @@
 package me.donnie.adapter.databinding;
 
 import android.databinding.DataBindingUtil;
-import android.databinding.ObservableArrayList;
 import android.databinding.ViewDataBinding;
 import android.support.annotation.Nullable;
 import android.view.ViewGroup;
+
+import java.util.List;
 
 import me.donnie.adapter.BaseViewHolder;
 import me.donnie.adapter.databinding.delegate.ItemViewDelegate;
@@ -20,7 +21,7 @@ public abstract class MultiItemBindingAdapter<T, VH extends BaseViewHolder> exte
 
     protected ItemViewDelegateManager mItemViewDelegateManager;
 
-    public MultiItemBindingAdapter(@Nullable ObservableArrayList<T> data) {
+    public MultiItemBindingAdapter(@Nullable List<T> data) {
         super(data);
         mItemViewDelegateManager = new ItemViewDelegateManager<>();
     }

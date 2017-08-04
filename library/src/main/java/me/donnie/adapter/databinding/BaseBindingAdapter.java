@@ -1,7 +1,6 @@
 package me.donnie.adapter.databinding;
 
 import android.databinding.DataBindingUtil;
-import android.databinding.ObservableArrayList;
 import android.databinding.ViewDataBinding;
 import android.support.annotation.IntRange;
 import android.support.annotation.LayoutRes;
@@ -11,7 +10,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import me.donnie.adapter.BaseViewHolder;
 
@@ -23,19 +24,18 @@ import me.donnie.adapter.BaseViewHolder;
 
 public abstract class BaseBindingAdapter<T, B extends ViewDataBinding, VH extends BaseViewHolder> extends RecyclerView.Adapter<VH> {
 
-    protected ObservableArrayList<T> mData;
-    protected ListChangedCallback itemsChangeCallback;
+    protected List<T> mData;
     protected int mLayoutResId;
 
     protected OnItemClickListener mOnItemClickListener;
 
     @NonNull
-    public ObservableArrayList<T> getData() {
+    public List<T> getData() {
         return mData;
     }
 
-    public void setData(@Nullable ObservableArrayList<T> data) {
-        mData = data == null ? new ObservableArrayList<T>() : data;
+    public void setData(@Nullable List<T> data) {
+        mData = data == null ? new ArrayList<T>() : data;
         notifyDataSetChanged();
     }
 
@@ -73,7 +73,7 @@ public abstract class BaseBindingAdapter<T, B extends ViewDataBinding, VH extend
         }
     }
 
-    public BaseBindingAdapter(@Nullable ObservableArrayList<T> data) {
+    public BaseBindingAdapter(@Nullable List<T> data) {
         this(0, data);
     }
 
@@ -81,12 +81,11 @@ public abstract class BaseBindingAdapter<T, B extends ViewDataBinding, VH extend
         this(layoutResId, null);
     }
 
-    public BaseBindingAdapter(@LayoutRes int layoutResId, @Nullable ObservableArrayList<T> data) {
-        this.mData = data == null ? new ObservableArrayList<T>() : data;
+    public BaseBindingAdapter(@LayoutRes int layoutResId, @Nullable List<T> data) {
+        this.mData = data == null ? new ArrayList<T>() : data;
         if (layoutResId != 0) {
             this.mLayoutResId = layoutResId;
         }
-        this.itemsChangeCallback = new ListChangedCallback();
     }
 
     @Override
@@ -119,75 +118,6 @@ public abstract class BaseBindingAdapter<T, B extends ViewDataBinding, VH extend
                 }
             }
         });
-    }
-
-    @Override
-    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
-        super.onAttachedToRecyclerView(recyclerView);
-        this.mData.addOnListChangedCallback(itemsChangeCallback);
-    }
-
-    @Override
-    public void onDetachedFromRecyclerView(RecyclerView recyclerView) {
-        super.onDetachedFromRecyclerView(recyclerView);
-        this.mData.removeOnListChangedCallback(itemsChangeCallback);
-    }
-
-    protected void resetItems(ObservableArrayList<T> newItems) {
-        this.mData = newItems;
-    }
-
-    protected void onChanged(ObservableArrayList<T> newItems) {
-        resetItems(newItems);
-        notifyDataSetChanged();
-    }
-
-    protected void onItemRangeChanged(ObservableArrayList<T> newItems, int positionStart, int itemCount) {
-        resetItems(newItems);
-        notifyItemRangeChanged(positionStart, itemCount);
-    }
-
-    protected void onItemRangeInserted(ObservableArrayList<T> newItems, int positionStart, int itemCount) {
-        resetItems(newItems);
-        notifyItemRangeInserted(positionStart, itemCount);
-    }
-
-    protected void onItemRangeMoved(ObservableArrayList<T> newItems) {
-        resetItems(newItems);
-        notifyDataSetChanged();
-    }
-
-    protected void onItemRangeRemoved(ObservableArrayList<T> newItems, int positionStart, int itemCount) {
-        resetItems(newItems);
-        notifyItemRangeRemoved(positionStart, itemCount);
-    }
-
-    private class ListChangedCallback extends ObservableArrayList.OnListChangedCallback<ObservableArrayList<T>> {
-
-        @Override
-        public void onChanged(ObservableArrayList<T> sender) {
-            BaseBindingAdapter.this.onChanged(sender);
-        }
-
-        @Override
-        public void onItemRangeChanged(ObservableArrayList<T> sender, int positionStart, int itemCount) {
-            BaseBindingAdapter.this.onItemRangeChanged(sender, positionStart, itemCount);
-        }
-
-        @Override
-        public void onItemRangeInserted(ObservableArrayList<T> sender, int positionStart, int itemCount) {
-            BaseBindingAdapter.this.onItemRangeInserted(sender, positionStart, itemCount);
-        }
-
-        @Override
-        public void onItemRangeMoved(ObservableArrayList<T> sender, int fromPosition, int toPosition, int itemCount) {
-            BaseBindingAdapter.this.onItemRangeMoved(sender);
-        }
-
-        @Override
-        public void onItemRangeRemoved(ObservableArrayList<T> sender, int positionStart, int itemCount) {
-            BaseBindingAdapter.this.onItemRangeRemoved(sender, positionStart, itemCount);
-        }
     }
 
     public interface OnItemClickListener {
