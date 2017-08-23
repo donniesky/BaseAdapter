@@ -1,4 +1,4 @@
-# BaseAdapter [![](https://jitpack.io/v/donniesky/BaseAdapter.svg)](https://jitpack.io/#donniesky/BaseAdapter)  [![Build Status](https://travis-ci.org/donniesky/BaseAdapter.svg?branch=master)](https://travis-ci.org/donniesky/BaseAdapter)  [![CircleCI](https://circleci.com/gh/donniesky/BaseAdapter/tree/master.svg?style=svg)](https://circleci.com/gh/donniesky/BaseAdapter/tree/master)  [![Stories in Ready](https://badge.waffle.io/donniesky/BaseAdapter.png?label=ready&title=Ready)](https://waffle.io/donniesky/BaseAdapter?utm_source=badge)  [![API](https://img.shields.io/badge/API-14%2B-blue.svg?style=flat)](https://android-arsenal.com/api?level=14)
+# BaseAdapter [![](https://jitpack.io/v/donniesky/BaseAdapter.svg)](https://jitpack.io/#donniesky/BaseAdapter)  [![Build Status](https://travis-ci.org/donniesky/BaseAdapter.svg?branch=master)](https://travis-ci.org/donniesky/BaseAdapter)  [![CircleCI](https://circleci.com/gh/donniesky/BaseAdapter/tree/master.svg?style=svg)](https://circleci.com/gh/donniesky/BaseAdapter/tree/master)  [![Stories in Ready](https://badge.waffle.io/donniesky/BaseAdapter.png?label=ready&title=Ready)](https://waffle.io/donniesky/BaseAdapter?utm_source=badge)  [![API](https://img.shields.io/badge/API-14%2B-blue.svg?style=flat)](https://android-arsenal.com/api?level=14)  [![Build Status](https://www.bitrise.io/app/f694972ad785d484/status.svg?token=jZ87yfHg4hRc6990z_Rq2Q&branch=master)](https://www.bitrise.io/app/f694972ad785d484)
 
 ## Setup and usage
 ### installation
@@ -21,7 +21,7 @@ Step 2. Add the dependency
 Assuming you have installed jitpack provider:
 ```GRADLE
 dependencies {
-        compile 'com.github.donniesky:BaseAdapter:v0.1.0'
+        compile 'com.github.donniesky:BaseAdapter:v0.1.1'
 }
 ```
 
